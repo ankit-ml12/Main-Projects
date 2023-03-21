@@ -6,14 +6,14 @@ const Repos = () => {
   const { repos } = useGlobalContext()
 
   let languages = repos.reduce((total, item) => {
-    const { languages } = item
-    if (!languages) return total
-    if (!total[languages]) {
-      total[languages] = { label: languages, value: 1 }
+    const { language } = item
+    if (!language) return total
+    if (!total[language]) {
+      total[language] = { label: language, value: 1 }
     } else {
-      total[languages] = {
-        ...total[languages],
-        value: total[languages].value + 1,
+      total[language] = {
+        ...total[language],
+        value: total[language].value + 1,
       }
     }
     return total
@@ -27,6 +27,7 @@ const Repos = () => {
     <section className="section">
       <Wrapper className="section-center">
         <Pie3D data={languages} />
+        {/* <ExampleChart /> */}
       </Wrapper>
     </section>
   )
