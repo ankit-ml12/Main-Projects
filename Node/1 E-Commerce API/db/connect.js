@@ -1,7 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const connectDB = (url) => {
-  return mongoose.connect(url);
-};
+mongoose.set('strictQuery', true)
 
-module.exports = connectDB;
+const connectDB = async (url) => {
+  return await mongoose
+    .connect(url)
+    .then(() => {
+      console.log(`connected to database successfully :)`)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+module.exports = connectDB
