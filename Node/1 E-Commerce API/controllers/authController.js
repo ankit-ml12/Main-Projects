@@ -1,7 +1,7 @@
 const User = require('../model/User')
 const { StatusCodes } = require('http-status-codes')
 const CustomError = require('../errors')
-const { createJwt } = require('../utils')
+const { attachCookiesToResponse } = require('../utils')
 const register = async (req, res) => {
   const { email, name, password } = req.body
 
@@ -12,22 +12,36 @@ const register = async (req, res) => {
 
   const user = await User.create({ name, email, password, role })
   const tokenUser = { name: user.name, userId: user._id, role: user.role }
-  const token = createJwt({ payload: tokenUser })
 
-  //tosend the cookie
-  const oneDay = 1000 * 60 * 60 * 24
-  res.cookie('token', token, {
-    httpOnly: true,
-    expires: new Date(Date.now() + oneDay),
-  })
+  attachCookiesToResponse({ res, user: tokenUser })
   res.status(StatusCodes.CREATED).json({ user: tokenUser })
 }
+
 //you can see cookie in the postmen
-const login = (req, res) => {
-  res.send('login')
+const login = async (req, res) => {
+  const { email, password } = req.body
+  if (!email || !password) {
+    throw new CustomError.CustomAPIError('Email or Password is Missing')
+  }
+  const user = await User.findOne({ email })
+  if (!user) {
+    throw new CustomError.UnauthenticatedError('Invalid credential')
+  }
+  const isPasswordCorrect = await user.comparePassword(password)
+  if (!isPasswordCorrect) {
+    throw new CustomError.UnauthenticatedError('Invalid credential')
+  }
+  const tokenUser = { name: user.name, userId: user._id, role: user.role }
+
+  attachCookiesToResponse({ res, user: tokenUser })
+  res.status(StatusCodes.CREATED).json({ user: tokenUser })
 }
 const logout = (req, res) => {
-  res.send('logout')
+  res.cookie('token', 'logout', {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  })
+  res.status(StatusCodes.OK).json({ msg: 'user loggout out!' })
 }
 
 module.exports = { register, login, logout }
