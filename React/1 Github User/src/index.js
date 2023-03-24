@@ -14,6 +14,8 @@ root.render(
         clientId={process.env.REACT_APP_CLIENT_ID}
         // authorizationParams={{
         redirectUri={window.location.origin}
+        cacheLocation={'localstorage'}
+
         // }}
       >
         {console.log('ml', process.env.REACT_APP_DOMAIN)}
