@@ -5,6 +5,7 @@ const app = express()
 const port = process.env.PORT || 3000
 const authRouter = require('./routes/authRouter')
 const userRouter = require('./routes/userRoutes')
+const productRouter = require('./routes/productRoutes')
 //database
 const connectDB = require('./db/connect')
 //remaining packages
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 })
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/products', productRouter)
 
 app.use(notfoundMiddleware)
 app.use(errorHandlerMiddleware)

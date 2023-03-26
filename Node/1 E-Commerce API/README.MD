@@ -165,29 +165,29 @@
 - [✅] create Product.js in models folder
 - [✅] create Schema
 - [✅] name : {type:String}
-- [] price: {type:Number}
-- [] description: {type:String}
-- [] image: {type:String}
-- [] category: {type:String}
-- [] company: {type:String}
-- [] colors: {type:[]}
-- [] featured: {type:Boolean}
-- [] freeShipping: {type:Boolean}
-- [] inventory:{type:Number}
-- [] averageRating:{type:Number}
-- [] user
-- [] set timestamps
-- [] export Product model
+- [✅] price: {type:Number}
+- [✅] description: {type:String}
+- [✅] image: {type:String}
+- [✅] category: {type:String}
+- [✅] company: {type:String}
+- [✅] colors: {type:[]}
+- [✅] featured: {type:Boolean}
+- [✅] freeShipping: {type:Boolean}
+- [✅] inventory:{type:Number}
+- [✅] averageRating:{type:Number}
+- [✅] user
+- [✅] set timestamps
+- [✅] export Product model
 
 #### Product Structure
 
-- [] add productController file in controllers
-- [] export (createProduct, getAllProducts,
+- [✅] add productController file in controllers
+- [✅] export (createProduct, getAllProducts,
   getSingleProduct, updateProduct, deleteProduct, uploadImage) functions
-- [] res.send('function name')
-- [] setup productRoutes file in routes
-- [] import all controllers
-- [] only getAllProducts and getSingleProduct accessible to public
+- [✅] res.send('function name')
+- [✅] setup productRoutes file in routes
+- [✅] import all controllers
+- [✅] only getAllProducts and getSingleProduct accessible to public
 - [] rest only by admin (setup middlewares)
 - [] typical setup
 - [] router.route('/uploadImage').post(uploadImage)
