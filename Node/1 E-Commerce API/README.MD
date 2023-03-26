@@ -118,25 +118,25 @@
 
 #### Authorize Permissions Setup
 
-- [] hardcode
+- [✅] hardcode
 
 #### Authorize Permissions Complete
 
-- [] introduce params
+- [✅] introduce params
 
 #### ShowCurrentUser
 
-- [] get user from req
-- [] send response with user
+- [✅] get user from req
+- [✅] send response with user
 
 #### UpdateUserPassword
 
-- [] almost identical to login user
-- [] add authenticateUser middleware in the route
-- [] check for oldPassword and newPassword in the body
-- [] if one missing 400
-- [] look for user with req.user.userId
-- [] check if oldPassword matches with user.comparePassword
+- [✅] almost identical to login user
+- [✅] add authenticateUser middleware in the route
+- [✅] check for oldPassword and newPassword in the body
+- [✅] if one missing 400
+- [✅] look for user with req.user.userId
+- [✅] check if oldPassword matches with user.comparePassword
 - [] if no match 401
 - [] if everything good set user.password equal to newPassword
 - [] await user.save()

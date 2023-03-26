@@ -15,8 +15,8 @@ const {
 // route.get('/').get(authenticateUser, getAllUsers)
 route.get('/', authenticateUser, authorizePermission('admin'), getAllUsers)
 route.get('/showMe', authenticateUser, showCurrentUser)
-route.get('/updateUser', updateUser)
-route.get('/updateUserPassword', updateUserPassword)
+route.patch('/updateUser', authenticateUser, updateUser)
+route.patch('/updateUserPassword', authenticateUser, updateUserPassword)
 route.get('/:id', authenticateUser, getSingleUser)
 // route.get('/:id').get(authenticateUser, getSingleUser)
 
