@@ -35,6 +35,11 @@ const UserSchema = new mongoose.Schema({
 })
 
 UserSchema.pre('save', async function (next) {
+  //this.modifiedPaths():- give list of all element modified when we calling this methode
+  //this.isModified('name'):- return true/false based on modification
+  //we check for password because in case of update we update only name and call save method then it also change save password because of this salt method
+  //remember when we save using findandupdateOne we are not calling this save method until and unless i am not modifing the password
+  if (this.isModified('password')) return
   const salt = await bcrypt.genSalt(10)
   this.password = await bcrypt.hash(this.password, salt)
   next()
