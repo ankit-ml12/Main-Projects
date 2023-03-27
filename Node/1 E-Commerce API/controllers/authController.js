@@ -24,10 +24,12 @@ const login = async (req, res) => {
     throw new CustomError.CustomAPIError('Email or Password is Missing')
   }
   const user = await User.findOne({ email })
+  console.log(user)
   if (!user) {
     throw new CustomError.UnauthenticatedError('Invalid credential')
   }
   const isPasswordCorrect = await user.comparePassword(password)
+  console.log(isPasswordCorrect)
   if (!isPasswordCorrect) {
     throw new CustomError.UnauthenticatedError('Invalid credential')
   }
