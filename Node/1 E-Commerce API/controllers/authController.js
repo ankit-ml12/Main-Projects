@@ -5,8 +5,6 @@ const { attachCookiesToResponse, createTokenUser } = require('../utils')
 const register = async (req, res) => {
   const { email, name, password } = req.body
 
-  console.log(email, name, password)
-
   const isFirstAccount = (await User.countDocuments({})) === 0
   const role = isFirstAccount ? 'admin' : 'user'
 
@@ -24,12 +22,10 @@ const login = async (req, res) => {
     throw new CustomError.CustomAPIError('Email or Password is Missing')
   }
   const user = await User.findOne({ email })
-  console.log(user)
   if (!user) {
     throw new CustomError.UnauthenticatedError('Invalid credential')
   }
   const isPasswordCorrect = await user.comparePassword(password)
-  console.log(isPasswordCorrect)
   if (!isPasswordCorrect) {
     throw new CustomError.UnauthenticatedError('Invalid credential')
   }
