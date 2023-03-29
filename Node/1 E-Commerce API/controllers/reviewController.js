@@ -27,16 +27,43 @@ const createReview = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ review })
 }
 const getAllReviews = async (req, res) => {
-  res.send('get all Review')
+  const review = await Review.find({})
+  res.status(StatusCodes.OK).json({ coutnt: review.length, review })
 }
 const getSingleReview = async (req, res) => {
-  res.send('getsingle Review')
+  const { id: reviewId } = req.params
+  const review = await Review.findOne({ _id: reviewId })
+
+  if (!review) {
+    throw new CustomError.NotFoundError(`No review with id ${reviewId}`)
+  }
+  res.status(StatusCodes.OK).json({ review })
 }
 const updateReview = async (req, res) => {
-  res.send('update Review')
+  const { id: reviewId } = req.params
+  const { rating, title, comment } = req.body
+  const review = await Review.findOne({ _id: reviewId })
+
+  if (!review) {
+    throw new CustomError.NotFoundError(`No review with id ${reviewId}`)
+  }
+  review.rating = rating
+  review.title = title
+  review.comment = comment
+  await review.save()
+  //check permission letter
+  res.status(StatusCodes.OK).json({ review })
 }
 const deleteReview = async (req, res) => {
-  res.send('delete Review')
+  const { id: reviewId } = req.params
+  const review = await Review.findOne({ _id: reviewId })
+
+  if (!review) {
+    throw new CustomError.NotFoundError(`No review with id ${reviewId}`)
+  }
+  //add permission here
+  await review.remove()
+  res.status(StatusCodes.OK).json({ msg: 'Success! Review removed' })
 }
 
 module.exports = {
