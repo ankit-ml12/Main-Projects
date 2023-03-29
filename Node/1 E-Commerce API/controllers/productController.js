@@ -8,16 +8,36 @@ const createProduct = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ product })
 }
 const getAllProducts = async (req, res) => {
-  res.send('get all Product')
+  const products = await Product.find({})
+  res.status(StatusCodes.OK).json({ size: products.length, products })
 }
 const getSingleProduct = async (req, res) => {
-  res.send('get single Product')
+  const { id: productId } = req.params
+  const product = await Product.find({ _id: productId })
+  if (!product.length) {
+    throw new CustomError.NotFoundError(`No product with id ${productId}`)
+  }
+  res.status(StatusCodes.OK).json({ product })
 }
 const updateProduct = async (req, res) => {
-  res.send('update Product')
+  const { id: productId } = req.params
+  const product = await Product.findOneAndUpdate({ _id: productId }, req.body, {
+    new: true,
+    runValidators: true,
+  })
+  if (!product) {
+    throw new CustomError.NotFoundError(`No product with id ${productId}`)
+  }
+  res.status(StatusCodes.OK).json({ product })
 }
 const deleteProduct = async (req, res) => {
-  res.send('delete Product')
+  const { id: productId } = req.params
+  const product = await Product.findOne({ _id: productId })
+  if (!product) {
+    throw new CustomError.NotFoundError(`No product with id ${productId}`)
+  }
+  await product.remove()
+  await res.status(StatusCodes.OK).json({ msg: 'success product remove' })
 }
 const uploadImage = async (req, res) => {
   res.send('upload image')

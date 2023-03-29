@@ -188,58 +188,60 @@
 - [✅] setup productRoutes file in routes
 - [✅] import all controllers
 - [✅] only getAllProducts and getSingleProduct accessible to public
-- [] rest only by admin (setup middlewares)
-- [] typical setup
-- [] router.route('/uploadImage').post(uploadImage)
-- [] import productRoutes as productRouter in the app.js
-- [] setup app.use('/api/v1/products', productRouter)
+- [✅] import all controllers
+- [✅] rest only by admin (setup middlewares)
+- [✅] rest only by admin (setup middlewares)
+- [✅] typical setup
+- [✅] router.route('/uploadImage').post(uploadImage)
+- [✅] import productRoutes as productRouter in the app.js
+- [✅] setup app.use('/api/v1/products', productRouter)
 
 #### Product Routes in Postman
 
 #### Create Product
 
-- [] create user property on req.body and set it equal to userId (req.user)
-- [] pass req.body into Product.create
-- [] send back the product
+- [✅] create user property on req.body and set it equal to userId (req.user)
+- [✅] pass req.body into Product.create
+- [✅] send back the product
 
 #### Remaining Controllers (apart from uploadImage)
 
-- [] getAllProducts
-- [] getSingleProduct
-- [] updateProduct
-- [] deleteProduct
-- [] typical CRUD, utilize (task or job) project
-- [] remember we check already for role 'admin'
+- [✅] getAllProducts
+- [✅] getSingleProduct
+- [✅] updateProduct
+- [✅] deleteProduct
+- [✅] typical CRUD, utilize (task or job) project
+- [✅] remember we check already for role 'admin'
 
 #### Upload Image
 
-- [] if some question, re-watch 07-file-upload
-- [] images folder with two images
+- [✅] if some question, re-watch 07-file-upload
+- [✅] images folder with two images
 
 #### Review Model
 
-- [] create Review.js in models folder
-- [] create Schema
-- [] rating : {type:Number}
-- [] title: {type:String}
-- [] comment: {type:String}
-- [] user
-- [] product
-- [] set timestamps
-- [] export Review model
+- [✅] create Review.js in models folder
+- [✅] create Schema
+- [✅] rating : {type:Number}
+- [✅] title: {type:String}
+- [✅] comment: {type:String}
+- [✅] user
+- [✅] product
+- [✅] set timestamps
+- [✅] export Review model
 
 #### Review Structure
 
-- [] add reviewController file in controllers
-- [] export (createReview, getAllReviews, getSingleReview, updateReview, deleteReview) functions
-- [] res.send('function name')
-- [] setup reviewRoutes file in routes
-- [] import all controllers
-- [] only getAllReviews and getSingleReview accessible to public
-- [] rest only to users (setup middleware)
-- [] typical REST setup
-- [] import reviewRoutes as reviewRouter in the app.js
-- [] setup app.use('/api/v1/reviews', reviewRouter)
+- [✅] add reviewController file in controllers
+- [✅] export (createReview, getAllReviews, getSingleReview, updateReview, deleteReview) functions
+- [✅] res.send('function name')
+- [✅] setup reviewRoutes file in routes
+- [✅] import all controllers
+- [✅] only getAllReviews and getSingleReview accessible to public
+- [✅] rest only to users (setup middleware)
+- [✅] typical REST setup
+- [✅] import reviewRoutes as reviewRouter in the app.js
+- [✅] setup app.use('/api/v1/reviews', reviewRouter)
 
 #### Create Review
 
