@@ -23,11 +23,21 @@ const createReview = async (req, res) => {
     )
   }
   req.body.user = req.user.userId
+  console.log(req.body)
   const review = await Review.create(req.body)
   res.status(StatusCodes.CREATED).json({ review })
 }
 const getAllReviews = async (req, res) => {
   const review = await Review.find({})
+    .populate({
+      path: 'product',
+      select: 'name company price',
+    })
+    .populate({
+      path: 'User',
+      select: 'name',
+      // strictPopulate: false,
+    })
   res.status(StatusCodes.OK).json({ coutnt: review.length, review })
 }
 const getSingleReview = async (req, res) => {
