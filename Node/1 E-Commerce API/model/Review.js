@@ -19,11 +19,16 @@ const ReviewSchema = new mongoose.Schema(
       trim: true,
       required: [true, 'please provide review text'],
     },
+    numOfReviews: {
+      type: Number,
+      default: 0,
+    },
     product: {
       type: mongoose.Schema.ObjectId,
       ref: 'Product',
       required: true,
     },
+
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
@@ -34,4 +39,10 @@ const ReviewSchema = new mongoose.Schema(
 )
 
 ReviewSchema.index({ product: 1, user: 1 }, { unique: true })
+ReviewSchema.post('save', async function () {
+  console.log('post save hook called')
+})
+ReviewSchema.post('remove', async function () {
+  console.log('post remove hook called')
+})
 module.exports = mongoose.model('Review', ReviewSchema)
