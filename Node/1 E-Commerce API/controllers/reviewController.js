@@ -34,7 +34,7 @@ const getAllReviews = async (req, res) => {
       select: 'name company price',
     })
     .populate({
-      path: 'User',
+      path: 'user',
       select: 'name',
       // strictPopulate: false,
     })
