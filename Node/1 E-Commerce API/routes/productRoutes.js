@@ -5,6 +5,7 @@ const {
   authorizePermission,
 } = require('../middleware/authentication')
 
+const { getSingleProductReviews } = require('../controllers/reviewController')
 const {
   createProduct,
   getAllProducts,
@@ -36,4 +37,5 @@ route.delete(
   deleteProduct
 )
 
+route.get('/:id/reviews', getSingleProductReviews)
 module.exports = route
