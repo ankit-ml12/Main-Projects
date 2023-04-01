@@ -7,6 +7,7 @@ const authRouter = require('./routes/authRouter')
 const userRouter = require('./routes/userRoutes')
 const productRouter = require('./routes/productRoutes')
 const reviewRouter = require('./routes/reviewRouter')
+const orderRouter = require('./routes/orderRoutes')
 //database
 const connectDB = require('./db/connect')
 //remaining packages
@@ -31,6 +32,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/products', productRouter)
 app.use('/api/v1/reviews', reviewRouter)
+app.use('/api/v1/orders', orderRouter)
 
 app.use(notfoundMiddleware)
 app.use(errorHandlerMiddleware)
