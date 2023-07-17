@@ -6,7 +6,9 @@
     "mongoose": "^7.3.4"
   },
   "scripts": {
-    "production": "cd client && npm run build",
+    "setup-production": "npm run install-client && npm run build-client && npm run install-server",
+    "install-client": "cd client && npm install",
+    "build-client": "cd client && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "netlify dev"
